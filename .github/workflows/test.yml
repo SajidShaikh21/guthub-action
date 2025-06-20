@@ -6,7 +6,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        node-version: [14, 16, 18 ]
+
     steps:
       - name: Checkout to Git repo 
         uses: actions/checkout@v4
@@ -14,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
@@ -22,38 +25,4 @@ jobs:
       - name: Run tests
         run: npm test
 
-  test2:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout to Git repo 
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test 
-
-  test3:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout to Git repo 
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+  
