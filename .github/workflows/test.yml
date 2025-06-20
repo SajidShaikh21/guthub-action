@@ -33,4 +33,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: sajid2102/my-simple-app:latest
+          tags: SajidShaikh21/my-simple-app:latest
